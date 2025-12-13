@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Produtos</title>
+</head>
+<body>
+
+<h1>Produtos</h1>
+
+<!-- 🔔 MENSAGENS DE SUCESSO -->
+<div th:if="${param.sucesso == 'salvo'}" style="color: green;">
+    Produto salvo com sucesso!
+</div>
+
+<div th:if="${param.sucesso == 'excluido'}" style="color: red;">
+    Produto excluído com sucesso!
+</div>
+
+<br>
+
+<!-- Botão Novo Produto -->
+<a href="/produtos/novo">+ Novo Produto</a>
+
+<br><br>
+
+<!-- Ordenação -->
+<div>
+    <strong>Ordenar por:</strong>
+    <a href="/produtos?ordem=id">ID</a> |
+    <a href="/produtos?ordem=nome">Nome</a> |
+    <a href="/produtos?ordem=preco">Preço</a>
+</div>
+
+<hr>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+        <th>Ações</th>
+    </tr>
+
+    <tr th:each="produto : ${produtos}">
+        <td th:text="${produto.id}"></td>
+        <td th:text="${produto.nome}"></td>
+        <td th:text="${produto.preco}"></td>
+        <td th:text="${produto.quantidade}"></td>
+        <td>
+            <a th:href="@{/produtos/editar/{id}(id=${produto.id})}">
+                Editar
+            </a>
+            |
+            <a th:href="@{/produtos/excluir/{id}(id=${produto.id})}"
+               onclick="return confirm('Tem certeza que deseja excluir?')">
+                Excluir
+            </a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
