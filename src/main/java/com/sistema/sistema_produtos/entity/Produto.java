@@ -14,22 +14,49 @@ public class Produto {
     private Double preco;
     private Integer quantidade;
 
-    public Produto() {}
+    // Construtor vazio (obrigatório para JPA)
+    public Produto() {
+    }
 
+    // Construtor com campos
     public Produto(String nome, Double preco, Integer quantidade) {
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
     }
 
-    public Long getId() { return id; }
+    // GETTERS E SETTERS
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public Long getId() {
+        return id;
+    }
 
-    public Double getPreco() { return preco; }
-    public void setPreco(Double preco) { this.preco = preco; }
+    // 🔴 ESSENCIAL para o REST (PUT / atualizar)
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Integer getQuantidade() { return quantidade; }
-    public void setQuantidade(Integer quantidade) { this.quantidade = quantidade; }
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
 }
